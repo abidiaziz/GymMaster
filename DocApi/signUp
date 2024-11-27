@@ -1,0 +1,29 @@
+SignupController Endpoint Documentation
+
+1. Signup User
+   Endpoint: POST /signup
+   Description: Creates a new user. Only accessible by ADMIN users.
+
+   Request Body Example:
+   {
+     "name": "John Doe",
+     "email": "john.doe@example.com",
+     "password": "securePassword123",
+     "phoneNumber": "+1234567890",
+     "address": "123 Main St, City, Country",
+     "gender": "MALE",
+     "role": "CUSTOMER","ADMIN","COACH"
+   }
+
+   Response Body Example:
+   {
+     "id": 1,
+     "name": "John Doe",
+     "email": "john.doe@example.com",
+     "phoneNumber": "+1234567890",
+     "address": "123 Main St, City, Country",
+     "gender": "MALE",
+     "role": "CUSTOMER"
+   }
+
+   Note: The response does not include the password for security reasons.

@@ -1,0 +1,69 @@
+SubscriptionController Endpoints Documentation
+
+1. Create Subscription
+   Endpoint: POST /api/subscriptions/create
+   Description: Creates a new subscription for a user. Only accessible by ADMIN users.
+
+   {
+        "userId": 2,
+        "months": 3,
+        "planType": "Type1",
+        "autoRenew": true
+   }
+
+   Response Body Example:
+   {
+     "id": 1,
+     "userId": 2,
+     "status": "ACTIVE",
+     "startDate": "2023-05-15",
+     "endDate": "2023-08-15",
+     "planType": "PREMIUM",
+     "autoRenew": true
+   }
+
+2. Update Subscription Status
+   Endpoint: PUT /api/subscriptions/update-status
+   Description: Updates the status of a user's subscription. Only accessible by ADMIN users.
+
+   Request Parameters:
+   - userId: Long
+   - status: SubscriptionStatus (ACTIVE, CANCELLED, EXPIRED)
+
+   Response Body Example:
+   {
+     "id": 1,
+     "userId": 2,
+     "status": "CANCELLED",
+     "startDate": "2023-05-15",
+     "endDate": "2023-08-15",
+     "planType": "PREMIUM",
+     "autoRenew": false
+   }
+
+3. Delete Subscription
+   Endpoint: DELETE /api/subscriptions/delete
+   Description: Deletes a user's subscription. Only accessible by ADMIN users.
+
+   Request Parameters:
+   - userId: Long
+
+   Response Body: No content (204 No Content)
+
+4. Get Subscription Info
+   Endpoint: GET /api/subscriptions/info
+   Description: Retrieves subscription information for a user. Accessible by ADMIN and CUSTOMER users.
+
+   Request Parameters:
+   - userId: Long
+
+   Response Body Example:
+   {
+     "id": 1,
+     "userId": 2,
+     "status": "ACTIVE",
+     "startDate": "2023-05-15",
+     "endDate": "2023-08-15",
+     "planType": "PREMIUM",
+     "autoRenew": true
+   }

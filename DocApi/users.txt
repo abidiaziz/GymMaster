@@ -1,0 +1,79 @@
+UserController Endpoints Documentation
+
+1. Get All Users
+   Endpoint: GET /api/users
+   Description: Retrieves a list of all users. Only accessible by ADMIN users.
+
+   Request Body: No body required
+
+   Response Body Example:
+   [
+     {
+       "id": 1,
+       "name": "John Doe",
+       "email": "john.doe@example.com",
+       "phoneNumber": "+1234567890",
+       "address": "123 Main St, City, Country",
+       "gender": "MALE",
+       "role": "CUSTOMER"
+     },
+     {
+       "id": 2,
+       "name": "Jane Smith",
+       "email": "jane.smith@example.com",
+       "phoneNumber": "+0987654321",
+       "address": "456 Elm St, Town, Country",
+       "gender": "FEMALE",
+       "role": "COACH"
+     }
+   ]
+
+2. Filter Users by Role
+   Endpoint: GET /api/users/filter
+   Description: Retrieves a list of users filtered by role. Only accessible by ADMIN users.
+
+   Request Parameters:
+   - role: Role (ADMIN, CUSTOMER, COACH)
+
+   Response Body Example:
+   [
+     {
+       "id": 2,
+       "name": "Jane Smith",
+       "email": "jane.smith@example.com",
+       "phoneNumber": "+0987654321",
+       "address": "456 Elm St, Town, Country",
+       "gender": "FEMALE",
+       "role": "COACH"
+     },
+     {
+       "id": 3,
+       "name": "Mike Johnson",
+       "email": "mike.johnson@example.com",
+       "phoneNumber": "+1122334455",
+       "address": "789 Oak St, Village, Country",
+       "gender": "MALE",
+       "role": "COACH"
+     }
+   ]
+
+3. Get User by ID
+   Endpoint: GET /api/users/{id}
+   Description: Retrieves a specific user by their ID. Only accessible by ADMIN users.
+
+   Request Parameters:
+   - id: Long (path variable)
+
+   Response Body Example:
+   {
+     "id": 1,
+     "name": "John Doe",
+     "email": "john.doe@example.com",
+     "phoneNumber": "+1234567890",
+     "address": "123 Main St, City, Country",
+     "gender": "MALE",
+     "role": "CUSTOMER"
+   }
+
+Note: All endpoints in this controller are only accessible by users with the ADMIN role.
+The response bodies do not include sensitive information such as passwords.

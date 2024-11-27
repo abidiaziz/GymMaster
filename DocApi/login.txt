@@ -1,0 +1,20 @@
+LoginController Endpoint Documentation
+
+1. Login
+   Endpoint: POST /login
+   Description: Authenticates a user and returns a JWT token.
+
+   Request Body Example:
+   {
+     "email": "user@example.com",
+     "password": "password123"
+   }
+
+   Response Body Example:
+   {
+     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyQGV4YW1wbGUuY29tIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+   }
+
+   Possible Error Responses:
+   - 401 Unauthorized: Incorrect email or password.
+   - 403 Forbidden: User account is not activated.

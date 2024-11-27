@@ -1,0 +1,89 @@
+ClassController Endpoints Documentation
+
+1. Create Class
+   Endpoint: POST /api/classes
+   Description: Creates a new class. Only accessible by ADMIN users.
+
+   Request Body Example:
+   {
+     "name": "Yoga for Beginners",
+     "description": "Introduction to basic yoga poses",
+     "startTime": "2023-06-01T09:00:00",
+     "endTime": "2023-06-01T10:00:00",
+     "maxCapacity": 20,
+     "coachId": 1
+   }
+
+   Response Body Example:
+   {
+     "id": 1,
+     "name": "Yoga for Beginners",
+     "description": "Introduction to basic yoga poses",
+     "startTime": "2023-06-01T09:00:00",
+     "endTime": "2023-06-01T10:00:00",
+     "maxCapacity": 20,
+     "coachId": 1,
+     "customerIds": []
+   }
+
+2. Update Class
+   Endpoint: PUT /api/classes/{id}
+   Description: Updates an existing class. Only accessible by ADMIN users.
+
+   Request Body Example:
+   {
+     "name": "Advanced Yoga",
+     "description": "Challenging yoga poses for experienced practitioners",
+     "startTime": "2023-06-01T10:00:00",
+     "endTime": "2023-06-01T11:30:00",
+     "maxCapacity": 15,
+     "coachId": 2
+   }
+
+   Response Body Example:
+   {
+     "id": 1,
+     "name": "Advanced Yoga",
+     "description": "Challenging yoga poses for experienced practitioners",
+     "startTime": "2023-06-01T10:00:00",
+     "endTime": "2023-06-01T11:30:00",
+     "maxCapacity": 15,
+     "coachId": 2,
+     "customerIds": [3, 4, 5]
+   }
+
+3. Enroll in Class
+   Endpoint: POST /api/classes/{classId}/enroll
+   Description: Enrolls the current user (CUSTOMER) in the specified class.
+
+   Request Body: No body required
+
+   Response Body Example:
+   {
+     "id": 1,
+     "name": "Advanced Yoga",
+     "description": "Challenging yoga poses for experienced practitioners",
+     "startTime": "2023-06-01T10:00:00",
+     "endTime": "2023-06-01T11:30:00",
+     "maxCapacity": 15,
+     "coachId": 2,
+     "customerIds": [3, 4, 5, 6]
+   }
+
+4. Get Class
+   Endpoint: GET /api/classes/{id}
+   Description: Retrieves details of a specific class. Accessible by ADMIN, CUSTOMER, and COACH users.
+
+   Request Body: No body required
+
+   Response Body Example:
+   {
+     "id": 1,
+     "name": "Advanced Yoga",
+     "description": "Challenging yoga poses for experienced practitioners",
+     "startTime": "2023-06-01T10:00:00",
+     "endTime": "2023-06-01T11:30:00",
+     "maxCapacity": 15,
+     "coachId": 2,
+     "customerIds": [3, 4, 5, 6]
+   }
