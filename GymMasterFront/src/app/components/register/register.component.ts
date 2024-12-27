@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { JwtService } from 'src/app/service/jwt.service';
 
 @Component({
@@ -13,13 +14,16 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private service: JwtService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
+      role: ['', [Validators.required]],
+      phoneNumber: ['', [Validators.required]],
       password: ['', [Validators.required]],
       confirmPassword: ['', [Validators.required]],
     }, { validator: this.passwordMathValidator })
@@ -36,11 +40,11 @@ export class RegisterComponent implements OnInit {
   }
 
   submitForm() {
-    console.log(this.registerForm.value);
+    //console.log(this.registerForm.value.);
     this.service.register(this.registerForm.value).subscribe(
       (response) => {
         if (response.id != null) {
-          alert("Hello " + response.name);
+          this.router.navigateByUrl("/users");
         }
       }
     )

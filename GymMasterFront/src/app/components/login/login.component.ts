@@ -30,10 +30,12 @@ export class LoginComponent implements OnInit {
       (response) => {
         console.log(response);
         if (response.jwt != null) {
-          alert("Hello, Your token is " + response.jwt);
           const jwtToken = response.jwt;
           localStorage.setItem('jwt', jwtToken);
-          this.router.navigateByUrl("/dashboard");
+          this.service.isLoggedIn.set(true);
+          localStorage.setItem('role', response.userDetails.authorities[0].authority === 'ROLE_ADMIN' ? 'admin' : 'user');
+          this.service.isAdmin.set(response.userDetails.authorities[0].authority === 'ROLE_ADMIN');
+          this.router.navigateByUrl("/calendar");
         }
       }
     )

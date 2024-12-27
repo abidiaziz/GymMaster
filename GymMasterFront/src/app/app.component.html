@@ -1,13 +1,16 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand" href="#">Angular App</a>
+    <a class="navbar-brand" href="/calendar">GymMaster</a>
 
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto" *ngIf="service.isLoggedIn()">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/register">Register</a>
+        <a class="nav-link" *ngIf="service.isAdmin()" routerLink="/users">Users Management</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/login">Login</a>
+        <a class="nav-link"  routerLink="/calendar">Calendar</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/login" (click)="logout()">logout</a>
       </li>
     </ul>
   </div>
