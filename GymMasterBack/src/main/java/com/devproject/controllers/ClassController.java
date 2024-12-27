@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/classes")
 public class ClassController {
@@ -46,6 +48,13 @@ public class ClassController {
     public ResponseEntity<ClassDTO> getClass(@PathVariable Long id) {
         ClassDTO classDTO = classService.getClassById(id);
         return ResponseEntity.ok(classDTO);
+    }
+
+    @GetMapping()
+    @PreAuthorize("hasAnyRole('ADMIN', 'CUSTOMER', 'COACH')")
+    public ResponseEntity<List<ClassDTO>> getClasses() {
+        List<ClassDTO> classes = classService.getClasses();
+        return ResponseEntity.ok(classes);
     }
 }
 

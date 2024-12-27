@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -82,13 +83,20 @@ public class ClassService {
         return convertToDTO(classObj);
     }
 
+    public List<ClassDTO> getClasses() {
+        List<Class> classes = classRepository.findAll();
+        return classes.stream().map(this::convertToDTO).toList();
+    }
+
     private ClassDTO convertToDTO(Class classEntity) {
         ClassDTO dto = new ClassDTO();
         BeanUtils.copyProperties(classEntity, dto);
         dto.setCoachId(classEntity.getCoach().getId());
-        dto.setCustomerIds(classEntity.getCustomers().stream()
-                .map(User::getId)
-                .collect(Collectors.toList()));
+        if (!(classEntity.getCustomers() == null)) {
+            dto.setCustomerIds(classEntity.getCustomers().stream()
+                    .map(User::getId)
+                    .collect(Collectors.toList()));
+        }
         return dto;
     }
 }
