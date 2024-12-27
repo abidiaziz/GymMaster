@@ -14,6 +14,7 @@ public class UserDTO {
     private String gender;
     private Role role;
     private Long subscriptionId;
+    private boolean hasSubscription;
     private List<Long> coachedClasses;
     private List<Long> enrolledClasses;
 
@@ -24,6 +25,15 @@ public class UserDTO {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public boolean getHasSubscription() {
+        return hasSubscription;
+    }
+
+    public void setHasSubscription(boolean hasSubscription) {
+        this.hasSubscription = hasSubscription;
+    }
+
 
     public String getName() {
         return name;

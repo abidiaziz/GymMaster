@@ -62,6 +62,10 @@ public class UserService implements UserDetailsService {
         userDTO.setGender(user.getGender());
         if (user.getSubscription()!=null) {
             userDTO.setSubscriptionId(user.getSubscription().getId());
+            userDTO.setHasSubscription(true);
+        }
+        else {
+            userDTO.setHasSubscription(false);
         }
         userDTO.setAddress(user.getAddress());
         userDTO.setPhoneNumber(user.getPhoneNumber());
