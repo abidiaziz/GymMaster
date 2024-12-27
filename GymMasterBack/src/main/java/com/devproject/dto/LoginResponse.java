@@ -1,4 +1,6 @@
 package com.devproject.dto;
 
-public record LoginResponse(String jwt) {
+import org.springframework.security.core.userdetails.UserDetails;
+
+public record LoginResponse(String jwt, UserDetails userDetails) {
 }

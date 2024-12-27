@@ -44,7 +44,7 @@ public class LoginController {
         final UserDetails userDetails = userService.loadUserByUsername(loginRequest.getEmail());
         final String jwt = jwtUtil.generateToken(userDetails);
 
-        return new LoginResponse(jwt);
+        return new LoginResponse(jwt, userDetails);
     }
 }
 
