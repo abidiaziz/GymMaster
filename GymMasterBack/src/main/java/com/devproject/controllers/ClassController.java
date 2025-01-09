@@ -36,6 +36,12 @@ public class ClassController {
         return ResponseEntity.ok(updatedClass);
     }
 
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public void deleteClass(@PathVariable Long id) {
+        classService.deleteClass(id);
+    }
+
     @PostMapping("/{classId}/enroll")
     @PreAuthorize("hasRole('CUSTOMER')")
     public ResponseEntity<?> enrollMe(@PathVariable Long classId) {

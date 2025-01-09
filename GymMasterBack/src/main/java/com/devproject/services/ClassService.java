@@ -99,5 +99,9 @@ public class ClassService {
         }
         return dto;
     }
+
+    public void deleteClass(Long id) {
+        classRepository.deleteById(id);
+    }
 }
 

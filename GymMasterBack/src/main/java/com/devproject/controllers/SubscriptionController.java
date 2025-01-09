@@ -28,7 +28,7 @@ public class SubscriptionController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> updateSubscriptionStatus(@RequestParam Long userId, @RequestParam Subscription.SubscriptionStatus status) {
         Subscription subscription = subscriptionService.updateSubscriptionStatus(userId, status);
-        return ResponseEntity.ok(subscription);
+        return ResponseEntity.ok(subscriptionService.toSubscriptionDTO(subscription));
     }
 
     @DeleteMapping("/delete")
@@ -40,9 +40,9 @@ public class SubscriptionController {
 
     @GetMapping("/info")
     @PreAuthorize("hasAnyRole('ADMIN', 'CUSTOMER')")
-    public ResponseEntity<?> getSubscriptionInfo(@RequestParam Long userId) {
+    public ResponseEntity<SubscriptionDTO> getSubscriptionInfo(@RequestParam Long userId) {
         Subscription subscription = subscriptionService.getSubscription(userId);
-        return ResponseEntity.ok(subscription);
+        return ResponseEntity.ok(subscriptionService.toSubscriptionDTO(subscription));
     }
 }
 
