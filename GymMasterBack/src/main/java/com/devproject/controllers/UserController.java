@@ -31,9 +31,9 @@ public class UserController {
 
     @GetMapping("/filter")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<List<User>> getUsersByRole(@RequestParam Role role) {
-        List<User> Users = userService.getUsersByRole(role);
-        return ResponseEntity.ok(Users);
+    public ResponseEntity<List<UserDTO>> getUsersByRole(@RequestParam Role role) {
+        List<User> users = userService.getUsersByRole(role);
+        return ResponseEntity.ok(users.stream().map(userService::convertToDTO).toList());
     }
 
     @GetMapping("/{id}")
